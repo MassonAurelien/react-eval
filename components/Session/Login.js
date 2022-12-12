@@ -133,7 +133,7 @@ const Login = () => {
               }}
             >
               <Title level={4} style={{ fontWeight: 500, fontSize: 18 }}>
-                Nouveau sur Recipes ?
+                Nouveau sur le site ?
               </Title>
               <Link href="/signup">Inscription</Link>
             </Typography>

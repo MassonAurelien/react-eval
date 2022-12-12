@@ -9,6 +9,12 @@ function Navbar({user}) {
   return (
     <Header>
       <Row justify="space-between" style={{ color: "white" }}>
+      <Col>
+          <Link href="/">
+            <span style={{ color: "white" }}>Onglet 1</span>
+          </Link>
+        </Col>
+
         <Col>
           <Link href="/dashboard">
             {user ? `Hello ${user.firstName}`: <UserOutlined />}
