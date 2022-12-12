@@ -3,6 +3,9 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import React, { useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import { Layout } from "antd";
+
 
 const firebaseApp = initializeApp(firebaseConfig);
 
@@ -24,7 +27,15 @@ const App = ({ title }) => {
     return () => setUser({});
   }, []);
 
-  return <div>Page ACCUEIL</div>;
-};
+  const { Content } = Layout;
+  return (
+    <Layout>
+      <Navbar user={user} />
+      <Content>
+        <div>WELCOME !</div>
+      </Content>
+    </Layout>
+  );
+}
 
 export default App;
