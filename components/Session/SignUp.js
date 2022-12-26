@@ -49,7 +49,7 @@ const Signup = () => {
 
         setLoading(false);
         message.success("Vous êtes bien inscrit");
-        Router.push("/dashboard");
+        Router.push("/");
       })
       .catch((error) => {
         setLoading(false);
