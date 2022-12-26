@@ -4,34 +4,23 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "../config/firebase";
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { Layout } from "antd";
-import ListSports from "./Sports/ListSports";
+import { Layout, Row, Col, Typography } from "antd";
 
 
 const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
 
 const App = () => {
-  const auth = getAuth(firebaseApp);
-  const db = getFirestore(firebaseApp);
-
   const [user, setUser] = useState({});
-  const [sports, setSports] = useState([]);
-
-  useEffect(() => {
-      const fetchData = async () => {
-          const result = await axios('https://www.thesportsdb.com/api/v1/json/2/all_sports.php',);
-          setSports(result.data);
-      };
-      fetchData();
-      }, []);
-
+  
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const docSnap = await getDoc(doc(db, "users", user.uid));
 
         if (docSnap.exists()) {
-          setUser(docSnap.data());
+          setUser({...docSnap.data(), id : user.uid});
         }
       }
     });
@@ -39,11 +28,31 @@ const App = () => {
   }, []);
 
   const { Content } = Layout;
+  const { Title } = Typography;
   return (
     <Layout>
       <Navbar user={user} />
       <Content>
-        <ListSports data={sports}/>
+        <Row>
+          <Col
+            xs={{ span: 20, offset: 2 }}
+            md={{ span: 12, offset: 6 }}
+            lg={{ span: 8, offset: 8 }}
+          >
+            <Typography
+              style={{
+                borderRadius: 8,
+                marginTop: "6vh",
+                marginBottom: 64,
+                textAlign: "center",
+              }}
+            >
+              <Title level={1} style={{ fontSize: 32, marginBottom: 32 }}>
+                Bienvenue sur le site Web React de François et Aurélien !
+              </Title>
+            </Typography>
+            </Col>
+        </Row>
       </Content>
     </Layout>
   );

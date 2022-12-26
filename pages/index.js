@@ -1,7 +1,7 @@
 import App from "../components/App";
 
 const Home = () => {
-  return <App title="Sports Website" />;
+  return <App/>;
 };
 
 export default Home;

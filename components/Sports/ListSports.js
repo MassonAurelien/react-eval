@@ -3,14 +3,14 @@ import { Row } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import Sport from "./Sport";
 
-const ListSports = ({data}) => {
+const ListSports = ({data, userId}) => {
   const [loading, setLoading] = useState(false);
   const [storeData, setStoreData] = useState([])
   
   useEffect(() => {
-      if (data.sports && data.sports.length > 0) {
+      if (data && data.length > 0) {
         setLoading(true);
-        setStoreData(data.sports);
+        setStoreData(data);
       } else {
         console.log("Error : No data found");
       }
@@ -36,7 +36,7 @@ const ListSports = ({data}) => {
   return (
     <Row style={{ padding: 32 }} gutter={16}>
       {storeData.map((item) => (
-        <Sport sport={item} key={item.idSport}/>
+        <Sport sport={item} key={item.idSport} userId={userId}/>
       ))}
     </Row>
   );
