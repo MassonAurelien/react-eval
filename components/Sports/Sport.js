@@ -1,5 +1,5 @@
 import {Col, Card, Badge, Avatar, Button, message} from "antd";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StarFilled, StarOutlined } from "@ant-design/icons";
 import {
   setDoc,
@@ -58,12 +58,17 @@ const Sport = ({sport, userId}) => {
                 text={<span style={{ fontSize: 11 }}>{sport.strFormat}</span>}
                 color="#008A4E"
                 style={{color : "#ffffff", fontWeight : "bold"}}
-              >
+                >
                 <Card
                 cover={<img src={sport.strSportThumb} alt={sport.strSport}/>}
                 actions={[
                     "",
-                    "",
+                    <Button
+                        key="list-vertical-star-o"
+                        onClick={() => {
+                        listLeague(sport.strSport);
+                        }}
+                    />,
                     <Button type="link" onClick={() => setIsFavorite((prev) => !prev)}>
                         {isFavorite ? (
                         <StarFilled key="like" />
