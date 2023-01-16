@@ -20,8 +20,12 @@ const ViewSports = () => {
 
   useEffect(() => {
       const fetchData = async () => {
+        try{
           const result = await axios('https://www.thesportsdb.com/api/v1/json/2/all_sports.php',);
           setSports(result.data);
+        }catch(e){
+          console.error("Impossible de fetch l'api");
+        }
       };
       fetchData();
       }, []);
@@ -41,7 +45,7 @@ const ViewSports = () => {
 
   useEffect(() => {
     if (user?.favoritesSports)
-      sports.sports.map((sport) => {
+      sports?.sports?.map((sport) => {
         if (user.favoritesSports && user.favoritesSports.includes(String(sport.idSport))) {
           setSportsFav((sportsFav) => [...sportsFav, { ...sport, favorite: true }]);
         } else
