@@ -154,7 +154,7 @@ const Signup = () => {
               }}
             >
               <Title level={4} style={{ fontWeight: 500, fontSize: 18 }}>
-                Déjà sur Recipes ?
+                Déjà sur Sports ?
               </Title>
               <Link href="/login">Connexion</Link>
             </Typography>
